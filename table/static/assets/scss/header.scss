@@ -1,0 +1,118 @@
+.header-action-item {
+    text-decoration: none;
+    line-height: 1;
+}
+
+.logo-main {
+    @include prefix(display, flex, ms webkit spec);
+}
+
+.header-top {
+    padding: 20px 0;
+}
+
+.border-btm-black {
+    @include prefix(border-bottom, 1px solid rgba(0, 0, 0, 0.1), ms webkit spec);
+}
+
+.icon-user {
+    width: 12px;
+    height: 12px;
+    margin-right: 2px;
+}
+
+.currency-btn .icon-dropdown {
+    stroke-width: 1.5px;
+}
+
+.sticky-header {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 99;
+    background-color: #fff;
+    width: 100%;
+}
+
+// search
+.field-search {
+    width: 100%;
+    max-width: 574px;
+}
+
+.search-button {
+    padding-left: 15px;
+}
+
+.search-wrapper {
+    max-height: 0;
+    overflow: hidden;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    background: #fff;
+    top: 101%;
+    z-index: 9;
+    opacity: 0;
+    @include prefix(border-bottom, 1px solid rgba(0, 0, 0, 0.1), ms webkit spec);
+    @include prefix(transition, all 0.4s, ms webkit spec);
+
+    &.search-appear {
+        max-height: 70px;
+        opacity: 1;
+    }
+
+    .header-1 & {
+        top: 102%;
+    }
+
+    .search-form {
+        @include prefix(border, none !important, ms webkit spec);
+        @include prefix(outline, none !important, ms webkit spec);
+
+        .search-input {
+            flex: 0 0 90%;
+            @include prefix(flex, 0 0 calc(100% - 90px), ms webkit spec);
+            @include prefix(border, none !important, ms webkit spec);
+            @include prefix(outline, none !important, ms webkit spec);
+
+            input {
+                width: 100%;
+                padding: 20px 0;
+                border: none;
+                outline: none;
+                font-size: 14px;
+
+                &:hover,
+                &:active,
+                &:focus {
+                    border: none;
+                    outline: none;
+                }
+            }
+        }
+
+        .search-submit {
+            padding: 17px 0 20px;
+            border: none;
+            outline: none;
+            @include prefix(flex, 0 0 40px, ms webkit spec);
+
+            &:hover,
+            &:active,
+            &:focus {
+                border: none;
+                outline: none;
+            }
+        }
+
+        .search-close {
+            padding: 20px 0;
+            cursor: pointer;
+            @include prefix(outline, none !important, ms webkit spec);
+            @include prefix(display, flex, ms webkit spec);
+            @include prefix(justify-content, flex-end, ms webkit spec);
+            @include prefix(flex, 0 0 50px, ms webkit spec);
+        }
+    }
+}

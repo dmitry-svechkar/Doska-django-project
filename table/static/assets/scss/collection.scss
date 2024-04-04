@@ -1,0 +1,264 @@
+.sorting-lists a:hover {
+    color: var(--secondary-color);
+}
+
+.sorting-lists {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 100%;
+    min-width: 240px;
+    z-index: 1;
+    transition: all 0.3s ease;
+    background-color: #fff;
+    padding: 13px 20px;
+    max-height: 55rem;
+    overflow: hidden;
+    overflow-y: auto;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+
+    .collection-sorting:hover & {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+}
+
+.sorting-icon .icon {
+    width: 20px;
+    margin-left: 10px;
+}
+
+.sorting-lists li {
+    padding: 7px 0;
+    cursor: pointer;
+    color: #2b2e30;
+}
+
+.sorting-header {
+    cursor: pointer;
+}
+
+.filter-header {
+    padding-bottom: 10px;
+    cursor: pointer;
+}
+
+.filter-item input[type=checkbox] {
+    display: none;
+}
+
+.filter-item .filter-label {
+    padding: 7px 0;
+    flex-grow: 1;
+    position: relative;
+    font-size: 1.4rem;
+    display: flex;
+    align-items: center;
+    word-break: break-word;
+    cursor: pointer;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.69;
+    letter-spacing: 0.25px;
+    color: #000000;
+    transition: all 0.3s ease;
+}
+
+.filter-item:hover .filter-label {
+    color: var(--secondary-color);
+}
+
+.filter-item:last-child .filter-label {
+    padding-bottom: 0;
+}
+
+.filter-item:first-child .filter-label {
+    padding-top: 0;
+}
+
+.filter-checkbox {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 1px solid #000;
+}
+
+.filter-checkbox {
+    position: relative;
+
+    .filter-label input:checked+& {
+        background-color: #000;
+    }
+}
+
+.filter-label input:checked+.filter-checkbox:after {
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 5px;
+    left: 4px;
+    top: 4px;
+    border-left: 1.5px solid #fff;
+    border-bottom: 1.5px solid #fff;
+    z-index: 1;
+    -ms-transform: rotate(-45deg) translateY(-50%);
+    -webkit-transform: rotate(-45deg) translateY(-50%);
+    transform: rotate(-45deg) translateY(-50%);
+}
+
+.filter-lists {
+    padding-top: 20px;
+}
+
+.filter-widget:not(:last-child) {
+    margin-bottom: 40px;
+}
+
+.filter-color {
+    .filter-lists {
+        display: flex;
+        flex-wrap: wrap;
+        margin-left: -8px;
+        margin-top: -12px;
+    }
+
+    .filter-item {
+        margin-left: 8px;
+        margin-top: 12px;
+    }
+
+    .filter-label {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        padding: 0;
+        border: 1px solid transparent;
+
+        &.white {
+            background-color: white;
+            border: 1px solid #ccc;
+        }
+
+        &.red {
+            background-color: red;
+        }
+
+        &.green {
+            background-color: green;
+        }
+
+        &.blue {
+            background-color: blue;
+        }
+
+        &.pink {
+            background-color: pink;
+        }
+
+        &.purple {
+            background-color: purple;
+        }
+
+        &.orange {
+            background-color: orange;
+        }
+
+        &.gold {
+            background-color: gold;
+        }
+
+        &.aqua {
+            background-color: aqua;
+        }
+
+        &.brown {
+            background-color: brown;
+        }
+
+        &.bisque {
+            background-color: bisque;
+        }
+
+        &.grey {
+            background-color: grey;
+        }
+    }
+
+    .filter-label input:checked+.filter-checkbox:after {
+        width: 15px;
+        height: 7px;
+        left: 9px;
+        border-left: 2px solid #fff;
+        border-bottom: 2px solid #fff;
+    }
+
+    .filter-label .filter-checkbox,
+    .filter-label input:checked+.filter-checkbox {
+        background-color: transparent;
+        border: none;
+    }
+}
+
+.filter-field {
+    width: 100%;
+
+    .field-input {
+        height: 35px;
+        padding: 0 10px;
+        border: 1px solid #EBEBF1;
+        background: #EBEBF1;
+        outline: none !important;
+    }
+}
+
+.filter-price {
+    padding-top: 20px;
+}
+
+.related-heading,
+.related-heading a {
+    font-weight: 500;
+    color: #000000;
+    text-decoration: none;
+}
+
+.related-price {
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    color: #000000;
+    margin-top: 12px;
+}
+
+.product-icon-star img {
+    width: 17px;
+}
+
+.related-review-icon {
+    margin-top: 5px;
+}
+
+.related-img-wrapper {
+    width: 80px;
+    min-width: 80px;
+    margin-right: 20px;
+}
+
+.related-item {
+    margin-top: 20px;
+}
+
+.pagination .link {
+    font-weight: 500;
+    font-size: 18px;
+    color: #000000;
+    line-height: 1;
+    width: 40px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

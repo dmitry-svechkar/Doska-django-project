@@ -1,0 +1,31 @@
+.promotinal-product-content {
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+
+.promotinal-product-section {
+    background: url('../img/banner/tools-bg.jpg') no-repeat center center/cover;
+}
+
+.promotinal-product-section>div {
+    position: relative;
+    z-index: 9;
+}
+
+.promotinal-product-container {
+    background-color: #6fa9a9;
+    padding: 110px 90px;
+    height: 100%;
+
+    .product-card {
+        margin-top: 0;
+    }
+
+    .arrow-prev {
+        left: 25px;
+    }
+
+    .arrow-next {
+        right: 25px;
+    }
+}

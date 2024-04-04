@@ -1,0 +1,40 @@
+.banner-section {
+    overflow: hidden;
+}
+
+.banner-section-inner {
+    margin-top: -24px;
+}
+
+.banner-img {
+    @include prefix(transition, all 0.5s, ms webkit spec);
+}
+
+.banner-item {
+    display: block;
+    margin-top: 24px;
+    overflow: hidden;
+
+    &:hover .banner-img {
+        @include prefix(transform, scale(1.05), ms webkit spec);
+    }
+}
+
+.single-banner-text {
+    margin-top: 24px;
+}
+
+.single-banner-btn {
+    margin-top: 44px;
+}
+
+.single-banner-content {
+    max-width: 410px;
+}
+
+img.single-banner-img {
+    height: 490px;
+    object-fit: cover;
+    width: 100%;
+    object-position: center;
+}

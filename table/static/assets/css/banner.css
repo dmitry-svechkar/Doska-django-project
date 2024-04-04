@@ -1,0 +1,40 @@
+.banner_heading {
+  font-size: 12px;
+  margin-bottom: 0;
+  color: #fff;
+  letter-spacing: 4px;
+  text-transform: uppercase; }
+
+.banner_subheading {
+  font-size: 20px;
+  color: #fff;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  margin-top: 15px; }
+
+.banner-text {
+  margin-top: 42px; }
+
+.banner_heading_2 {
+  color: #000;
+  font-size: 27px;
+  margin: 0px 0px 0px 0px;
+  letter-spacing: 2.68px; }
+
+.banner_subheading_2 {
+  color: #000;
+  line-height: 1.23;
+  font-size: 21px;
+  margin-top: 9px;
+  font-weight: 400; }
+
+.banner_btn_2 {
+  font-size: 17px;
+  color: #000;
+  text-decoration: none;
+  margin-top: 25px;
+  font-weight: 400;
+  border-bottom: 1px solid #000; }
+  .banner_btn_2:hover {
+    color: #000;
+    border-bottom: 1px solid #000; }

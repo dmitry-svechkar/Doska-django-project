@@ -1,0 +1,15 @@
+
+<div>
+    {% for good in goods_list %}
+       
+       <ul>{{ good.good_name }}</ul>
+        <li>{{ good.model }}</li>
+        <li>{{ good.good_cost }}</li>
+        <li>{{ good.condition }}</li>
+          {% for photo in good.goods.all %}
+            <img src="{{ photo.good_photo.url }}" alt="Фото товара">
+          {% endfor %}
+       {% empty %}
+     не нашлось
+     {% endfor %}
+    </div>

@@ -1,0 +1,42 @@
+.core-features-container {
+    margin-left: 1px;
+    margin-top: 29px;
+}
+
+.core-features-inner {
+    margin-top: -17px;
+}
+
+.core-features img {
+    @include prefix(transition, all 0.6s, ms webkit spec);
+    transform-style: preserve-3d;
+}
+
+.core-features {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    margin-left: -1px;
+    margin-top: -1px;
+    padding: 25px 32px 28px;
+    @include prefix(transition, all 0.5s, ms webkit spec);
+
+    &:hover {
+        background-color: rgba(0, 0, 0, 0.05);
+
+        img {
+            @include prefix(animation, upDown 0.4s, ms webkit spec);
+        }
+    }
+}
+
+.core-heading {
+    margin-top: 20px;
+}
+
+.core-text {
+    margin-top: 8px;
+}
+
+.core-link {
+    display: block;
+    margin-top: 25px;
+}

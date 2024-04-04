@@ -1,0 +1,31 @@
+.announcement-text,
+.announcement-text:hover,
+.announcement-text:focus,
+.currency-btn,
+.currency-list-option,
+.currency-list-option:hover {
+    text-decoration: none;
+    font-size: 14px;
+    line-height: 27px;
+    font-weight: var(--body-font-weight);
+    color: #000;
+}
+
+.currency-list-option,
+.currency-list-option:hover {
+    color: var(--body-color);
+}
+
+.announcement-text {
+    margin: 0;
+}
+
+.flag {
+    min-width: 20px;
+    max-width: 20px;
+    margin-right: 3px;
+}
+
+.currency-list {
+    min-width: auto;
+}

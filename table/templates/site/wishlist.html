@@ -1,0 +1,37 @@
+
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+                            <h2 class="section-heading">My Wishlist</h2>
+                            <div class="collection-product-container">
+                                <div class="row">
+                            {% for good in wish_list %}
+                            <div class="col-lg-4 col-md-6 col-3" data-aos="fade-up" data-aos-duration="700">
+                                <div class="product-card">
+                                    <div class="product-card-img">
+                    
+                                        <a class="hover-switch" href="{% url 'good-detail' good.good.slug %}">
+                                            <img class="secondary-img" src="{{ good.good.goods.last.good_photo.url }}"
+                                            width="600" height="400" alt="фото товара">
+                                            <img class="primary-img" src="{{ good.good.goods.first.good_photo.url }}"
+                                            height="400" width="600" alt="product-img">
+                                        </a>
+                                 
+                                        <div
+                                            class="product-card-action product-card-action-2 justify-content-center">
+                                        </div>
+                                    </div>
+                                    <div class="product-card-details">
+                                        <h3 class="product-card-title">
+                                            <a href="{% url 'good-detail' good.good.slug %}">{{ good.good.good_name }}</a>
+                                        </h3>
+                                        <h4 class="product-card-title"> Модель {{ good.good.model }} </h4>
+                                        <div class="product-card-price">
+                                            <span class="card-price-regular">$ {{ good.good.good_cost }} </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+    {% endblock %}

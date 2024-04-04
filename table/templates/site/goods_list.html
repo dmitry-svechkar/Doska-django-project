@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<div class="collection-product-container">
+    <div class="row">
+        {% for good in goods_list %}
+        {% if good.is_published %}
+        <div class="col-lg-4 col-md-6 col-3" data-aos="fade-up" data-aos-duration="700">
+            <div class="product-card">
+                <div class="product-card-img">
+
+                    <a class="hover-switch" href="{% url 'good-detail' good.slug %}">
+                        <img class="secondary-img" src="{{ good.goods.last.good_photo.url }}"
+                        width="600" height="400" alt="фото товара">
+                        <img class="primary-img" src="{{ good.goods.first.good_photo.url }}"
+                        height="400" width="600" alt="product-img">
+                    </a>
+             
+                    <div
+                        class="product-card-action product-card-action-2 justify-content-center">
+                    </div>
+                </div>
+                <div class="product-card-details">
+                    <h3 class="product-card-title">
+                        <a href="{% url 'good-detail' good.slug %}">{{ good.good_name }}</a>
+                    </h3>
+                    <h4 class="product-card-title"> Модель {{ good.model }} </h4>
+                    <div class="product-card-price">
+                        <span class="card-price-regular">$ {{ good.good_cost }} </span>
+                    </div>
+
+                </div>
+                
+            </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+
+{% endblock %}

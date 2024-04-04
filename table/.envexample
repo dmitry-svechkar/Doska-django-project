@@ -1,0 +1,22 @@
+SECRET_KEY=any_secret_key_of_django_project
+DEBUG=True
+
+#db В прод-среде подключена sqllite3:
+
+POSTGRES_USER=username
+POSTGRES_PASSWORD=pass
+POSTGRES_DB=name_db
+DB_HOST=db
+DB_PORT=5432
+
+
+#Email settings
+EMAIL_HOST=smtp.example.com
+EMAIL_PORT=Номер порта(int)
+EMAIL_HOST_USER=Host-user
+EMAIL_HOST_PASSWORD=Host-pass
+EMAIL_USE_TLS=0
+EMAIL_USE_SSL=1
+DEFAULT_FROM_EMAIL=Host-user
+ACCOUNT_ACTIVATION_DAYS=1
+AUTH_USER_EMAIL_UNIQUE=1

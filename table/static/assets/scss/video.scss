@@ -1,0 +1,24 @@
+.video-container {
+    position: relative;
+    z-index: 9;
+}
+
+.video-tools {
+    min-height: 600px;
+}
+
+.video-section {
+    overflow: hidden;
+}
+
+.video-button,
+.video-button:hover,
+.video-button:focus {
+    width: 140px;
+    height: 140px;
+    border: 2px solid #fefefe;
+    @include prefix(display, flex, ms webkit spec);
+    @include prefix(align-items, center, ms webkit spec);
+    @include prefix(justify-content, center, ms webkit spec);
+    @include prefix(border-radius, 50%, ms webkit spec);
+}

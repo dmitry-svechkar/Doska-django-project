@@ -1,0 +1,6 @@
+
+{% extends "base.html" %}
+{% block content %}
+Привет, {{ user.username }}! <br/>
+Ваша учетная запись активирована. <a href="{% url 'login' %}">Заходите</a> на сайт.
+{% endblock %}

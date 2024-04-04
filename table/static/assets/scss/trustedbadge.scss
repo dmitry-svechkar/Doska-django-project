@@ -1,0 +1,41 @@
+.trusted-heading {
+    color: #00234D;
+}
+
+.trusted-subheading {
+    color: #77889B;
+    margin-top: 5px;
+}
+
+.trusted-subheading-2 {
+    color: #000;
+}
+
+.trusted-subheading-3 {
+    color: #b9b9b9;
+}
+
+.trusted-badge {
+    margin-top: 24px;
+    padding: 40px;
+    height: 100%;
+    @include prefix(display, flex, ms webkit spec);
+    @include prefix(align-items, center, ms webkit spec);
+    @include prefix(justify-content, center, ms webkit spec);
+}
+
+.trusted-row>div {
+    height: 100%;
+}
+
+.icon-trusted {
+    max-width: 50px;
+}
+
+.trusted-content {
+    padding-left: 24px;
+}
+
+.trusted-section-inner {
+    margin-top: -24px;
+}

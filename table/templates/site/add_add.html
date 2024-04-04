@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div>
+    <form method="post" class="login-form common-form mx-auto" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p}}
+
+        <div class="col-12 mt-3">
+            <button type="submit" class="btn-primary d-block mt-4 btn-signin">Сохранить</button>
+        </div>
+    </form>
+</div>
+
+{% endblock content %}

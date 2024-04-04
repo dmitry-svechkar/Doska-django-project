@@ -1,0 +1,130 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+
+<main id="MainContent" class="content-for-layout">
+    <div class="product-page mt-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-12 col-12">
+                    <div class="product-gallery product-gallery-vertical d-flex">
+                        <div class="product-img-large">
+                            <div class="img-large-slider common-slider" data-slick='{
+                                "slidesToShow": 1, 
+                                "slidesToScroll": 1,
+                                "dots": false,
+                                "arrows": false,
+                                "asNavFor": ".img-thumb-slider"
+                            }'>
+                            {% for photo in object.goods.all %}
+                                <div class="img-large-wrapper">
+                                    <a href="" data-fancybox="gallery">
+                                        <img src="{{ photo.good_photo.url}}" alt="img">
+                                    </a>
+                            
+                                </div>
+                                {% endfor %}
+                                
+                            </div>
+                        </div>
+                        <div class="product-img-thumb">
+                            <div class="img-thumb-slider common-slider" data-vertical-slider="true" data-slick='{
+                                "slidesToShow": 5, 
+                                "slidesToScroll": 1,
+                                "dots": false,
+                                "arrows": true,
+                                "infinite": false,
+                                "speed": 300,
+                                "cssEase": "ease",
+                                "focusOnSelect": true,
+                                "swipeToSlide": true,
+                                "asNavFor": ".img-large-slider"
+                            }'>
+                            {% for photo in object.goods.all %}
+                                <div>
+                                    <div class="img-thumb-wrapper">
+                                        <img src="{{ photo.good_photo.url}}" alt="img">
+                                    </div>
+                                </div>
+                                {% endfor %}
+                                
+                            </div>
+                            <div class="activate-arrows show-arrows-always arrows-white d-none d-lg-flex justify-content-between mt-3"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-12 col-12">
+                    <div class="product-details ps-lg-4">
+                        {% if object.in_stock%}
+                        <div class="mb-3"><span class="product-availability">In Stock</span></div>
+                        {% endif %}
+                        <h2 class="product-title mb-3">{{ object.good_name }}</h2>
+                        <div class="product-rating d-flex align-items-center mb-3">
+                            <span class="star-rating">
+                                <svg width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M15.168 5.77344L10.082 5.23633L8 0.566406L5.91797 5.23633L0.832031 5.77344L4.63086 9.19727L3.57031 14.1992L8 11.6445L12.4297 14.1992L11.3691 9.19727L15.168 5.77344Z" fill="#FFAE00"/>
+                                </svg>
+                                <svg width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M15.168 5.77344L10.082 5.23633L8 0.566406L5.91797 5.23633L0.832031 5.77344L4.63086 9.19727L3.57031 14.1992L8 11.6445L12.4297 14.1992L11.3691 9.19727L15.168 5.77344Z" fill="#FFAE00"/>
+                                </svg>
+                                <svg width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M15.168 5.77344L10.082 5.23633L8 0.566406L5.91797 5.23633L0.832031 5.77344L4.63086 9.19727L3.57031 14.1992L8 11.6445L12.4297 14.1992L11.3691 9.19727L15.168 5.77344Z" fill="#FFAE00"/>
+                                </svg>
+                                <svg width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M15.168 5.77344L10.082 5.23633L8 0.566406L5.91797 5.23633L0.832031 5.77344L4.63086 9.19727L3.57031 14.1992L8 11.6445L12.4297 14.1992L11.3691 9.19727L15.168 5.77344Z" fill="#FFAE00"/>
+                                </svg>
+                                <svg width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M15.168 5.77344L10.082 5.23633L8 0.566406L5.91797 5.23633L0.832031 5.77344L4.63086 9.19727L3.57031 14.1992L8 11.6445L12.4297 14.1992L11.3691 9.19727L15.168 5.77344Z" fill="#B2B2B2"/>
+                                </svg>                                            
+                            </span>
+                            <span class="rating-count ms-2">(50)</span>
+                        </div>
+                        <div class="product-price-wrapper mb-4">
+                            <span class="product-price regular-price">{{ object.good_cost }} $</span>
+                            
+                        </div>
+                        <div class="product-sku product-meta mb-1">
+                            <strong class="label">Модель</strong> {{ object.model }}
+                        </div>
+                        <div class="product-vendor product-meta mb-3">
+                            <strong class="label">Состояние товара </strong> {{ object.condition }}
+                        </div>
+                        <div class="product-vendor product-meta mb-3">
+                            <strong class="label">Описание товара </strong> {{ object.description }}
+                        </div>
+                        <div class="product-vendor product-meta mb-3">
+                            <strong class="label">Категория товара </strong> {{ object.good_category }}
+                        </div>
+                        
+                           
+                        {% if user.is_authenticated %}
+                        
+                        
+                        <form class="product-form" method="post" action="{% url 'add_to_cart' slug=object.slug %}">
+                            {% csrf_token %}
+                            <div class="product-form-buttons d-flex align-items-center justify-content-between mt-4">
+                                <button type="submit" class="position-relative btn-atc btn-add-to-cart loader">ADD TO CART</button>
+                                <a href="{% url 'add_to_wishlist' slug=object.slug %}" class="product-wishlist">
+                                    <svg class="icon icon-wishlist" width="26" height="22" viewBox="0 0 26 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M6.96429 0.000183105C3.12305 0.000183105 0 3.10686 0 6.84843C0 8.15388 0.602121 9.28455 1.16071 10.1014C1.71931 10.9181 2.29241 11.4425 2.29241 11.4425L12.3326 21.3439L13 22.0002L13.6674 21.3439L23.7076 11.4425C23.7076 11.4425 26 9.45576 26 6.84843C26 3.10686 22.877 0.000183105 19.0357 0.000183105C15.8474 0.000183105 13.7944 1.88702 13 2.68241C12.2056 1.88702 10.1526 0.000183105 6.96429 0.000183105ZM6.96429 1.82638C9.73912 1.82638 12.3036 4.48008 12.3036 4.48008L13 5.25051L13.6964 4.48008C13.6964 4.48008 16.2609 1.82638 19.0357 1.82638C21.8613 1.82638 24.1429 4.10557 24.1429 6.84843C24.1429 8.25732 22.4018 10.1584 22.4018 10.1584L13 19.4036L3.59821 10.1584C3.59821 10.1584 3.14844 9.73397 2.69866 9.07411C2.24888 8.41426 1.85714 7.55466 1.85714 6.84843C1.85714 4.10557 4.13867 1.82638 6.96429 1.82638Z" fill="#00234D"></path>
+                                    </svg>
+                                </a>
+                            </div>
+                            <div class="buy-it-now-btn mt-2">
+                                <button type="submit" class="position-relative btn-atc btn-buyit-now">BUY IT NOW</button>
+                            </div>
+                        </form> 
+                        {% else %}
+                        Вам необходимо зарегестрироваться и авторизоваться, чтобы начать покупки. Сделайте это!
+                            <a href="{% url 'django_registration_register' %}" class="position-relative btn-atc btn-add-to-cart loader">Зарегестрироваться</a>
+                            <a href="{% url 'login' %}" class="btn-secondary mt-2 btn-signin" >Войти</a>
+                        {% endif %}
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</main>
+    {% endblock %}

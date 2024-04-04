@@ -1,0 +1,11 @@
+.icon-breadcrumb {
+  width: 16px;
+  height: 16px;
+  margin: 0 7px; }
+
+.breadcrumb li,
+.breadcrumb li a {
+  font-weight: 400;
+  font-size: 16px;
+  letter-spacing: 0.5px;
+  color: #000000; }

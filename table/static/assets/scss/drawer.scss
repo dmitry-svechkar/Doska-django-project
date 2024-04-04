@@ -1,0 +1,140 @@
+// general
+.drawer-heading {
+    margin-bottom: 0;
+    font-weight: 600;
+    font-size: 20px;
+    color: var(--body-color);
+}
+
+// cart drawer
+.cart-content-area {
+    height: 100%;
+}
+
+.minicart-loop {
+    padding: 1rem 0;
+    overflow-y: scroll;
+}
+
+.minicart-item {
+    padding: 0.5rem 1rem;
+}
+
+.product-remove {
+    line-height: 1;
+}
+
+.mini-img-wrapper {
+    width: 80px;
+    overflow: hidden;
+}
+
+.mini-img {
+    min-width: 80px;
+    height: 100px;
+    object-fit: cover;
+    object-position: top;
+}
+
+.minicart-item>.product-info {
+    width: calc(100% - 80px);
+    padding-left: 20px;
+}
+
+.product-title,
+.product-title a {
+    font-size: 15px;
+    line-height: 1.3;
+    font-weight: var(--title-font-weight);
+    font-family: var(--title-font-family);
+    color: var(--title-color);
+}
+
+.product-vendor,
+.quantity input,
+.product-price {
+    font-size: 13px;
+    color: var(--body-color);
+    font-weight: var(--body-font-weight);
+    font-family: var(--body-font-family);
+}
+
+.product-remove {
+    display: block;
+    margin-top: 3px;
+    font-size: 11px;
+    text-decoration: underline;
+    color: var(--body-color);
+    font-weight: var(--body-font-weight);
+    font-family: var(--body-font-family);
+}
+
+.product-title:hover,
+.product-title a:hover,
+.product-remove:hover {
+    color: var(--secondary-color);
+}
+
+.qty-btn,
+.qty-input {
+    width: 50px;
+    text-align: center;
+    border: none;
+    outline: none;
+    background: transparent;
+
+    &:hover,
+    &:focus,
+    &:active {
+        border: none;
+        outline: none;
+        background: transparent;
+    }
+
+    &::-webkit-inner-spin-button {
+        display: none;
+    }
+}
+
+.quantity {
+    width: 100px;
+    @include prefix(border, 1px solid rgba(0, 0, 0, 0.1) !important, ms webkit spec);
+
+    .qty-btn {
+        width: 25px;
+        padding: 4px 5px 6px;
+        cursor: pointer;
+
+        img {
+            max-width: 12px;
+            pointer-events: none;
+        }
+
+        &.dec-qty {
+            @include prefix(border-right, 1px solid rgba(0, 0, 0, 0.1) !important, ms webkit spec);
+        }
+
+        &.inc-qty {
+            @include prefix(border-left, 1px solid rgba(0, 0, 0, 0.1) !important, ms webkit spec);
+        }
+    }
+}
+
+.cart-subtotal,
+.cart-subprice {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.cart-taxes {
+    font-size: 12px;
+}
+
+.minicart-footer {
+    padding: 20px;
+    @include prefix(border-top, 1px solid rgba(0, 0, 0, 0.1), ms webkit spec);
+}
+
+.minicart-btn {
+    width: 48%;
+}

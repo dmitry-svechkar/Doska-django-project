@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+<form method="post" class="login-form common-form mx-auto">
+    {% csrf_token %}
+    {{ form.as_p}}
+  
+    <div class="col-12 mt-3">
+        <a href="{% url 'password_reset' %}" class="text_14 d-block">Forgot your password?</a>
+        <button type="submit" class="btn-primary d-block mt-4 btn-signin">SIGN IN</button>
+        <a href="{% url 'django_registration_register' %}" class="btn-secondary mt-2 btn-signin">CREATE AN ACCOUNT</a>
+    </div>
+</form>
+{% endblock %}

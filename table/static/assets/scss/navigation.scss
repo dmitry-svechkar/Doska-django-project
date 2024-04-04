@@ -1,0 +1,76 @@
+.navbar {
+    padding: 0;
+}
+
+.nav-link {
+    color: #000;
+    font-weight: 500;
+    font-size: 15px;
+}
+
+.nav-text-sub {
+    font-size: 14px;
+    text-decoration: none;
+    color: #444;
+    display: block;
+    font-weight: 400;
+
+    &.nav-link-mega {
+        padding-left: 0;
+    }
+}
+
+.icon-dropdown {
+    width: 18px;
+    height: 18px;
+    stroke-width: 2.5px;
+}
+
+.icon-hamburger {
+    width: 24px;
+    height: 24px;
+}
+
+.header-wishlist {
+    color: #000;
+}
+
+.header-wishlist,
+.header-hamburger {
+    margin-top: 3px;
+}
+
+.site-navigation .nav-link:focus {
+    color: #000;
+}
+
+.nav-item-mega:last-child a {
+    padding-bottom: 0;
+}
+
+.mega-menu-img * {
+    @include prefix(transition, all 0.3s ease, ms webkit spec);
+}
+
+.img-menu-heading {
+    font-weight: 500;
+}
+
+.img-menu-action:hover span,
+.main-menu .menu-list-item.active .nav-link,
+.main-menu .menu-list-item:hover .nav-link,
+.main-menu .nav-text-sub:hover {
+    color: var(--secondary-color);
+}
+
+.img-menu-action:hover .icon-right-long {
+    fill: var(--secondary-color);
+}
+
+.nav-link-sub:hover img.menu-img {
+    filter: brightness(0.9);
+}
+
+.main-menu .nav-link {
+    padding: 0;
+}
