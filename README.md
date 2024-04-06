@@ -69,7 +69,7 @@ pip install -r requirements.txt
 SECRET_KEY=any_secret_key_of_django_project
 DEBUG=True
 
-# db В прод-среде подключена sqllite3:
+# db В прод-среде подключена Postgres, в dev - sqlite3
 
 POSTGRES_USER=username
 POSTGRES_PASSWORD=pass
