@@ -8,8 +8,11 @@ from django.views.generic import CreateView, DetailView, ListView
 
 from goods.forms import AddGoodForm
 from goods.models import Carts, Goods, WishGoods
+from django.views.decorators.cache import cache_page
+from django.utils.decorators import method_decorator
 
 
+@method_decorator(cache_page(60*60), name='dispatch')
 class GoodsListView(ListView):
     """
     Вью для отображения списков товаров.
@@ -63,6 +66,7 @@ class AddToWishListView(View):
             return redirect('good-detail', slug=slug)
 
 
+@method_decorator(cache_page(60*15), name='dispatch')
 class WishListView(ListView):
     """ Вью отображения желаемых товаров. """
     model = WishGoods

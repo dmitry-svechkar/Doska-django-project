@@ -104,7 +104,15 @@ USE_I18N = True
 
 USE_TZ = True
 
-
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": os.getenv('LOCATION'),
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        }
+    }
+}
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
