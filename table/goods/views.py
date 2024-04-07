@@ -12,7 +12,7 @@ from django.views.decorators.cache import cache_page
 from django.utils.decorators import method_decorator
 
 
-@method_decorator(cache_page(60*60), name='dispatch')
+@method_decorator(cache_page(60*1), name='dispatch')
 class GoodsListView(ListView):
     """
     Вью для отображения списков товаров.
@@ -66,7 +66,7 @@ class AddToWishListView(View):
             return redirect('good-detail', slug=slug)
 
 
-@method_decorator(cache_page(60*15), name='dispatch')
+@method_decorator(cache_page(60*1), name='dispatch')
 class WishListView(ListView):
     """ Вью отображения желаемых товаров. """
     model = WishGoods
