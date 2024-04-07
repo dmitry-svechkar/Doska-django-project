@@ -150,3 +150,8 @@ MEDIA_ROOT = BASE_DIR / 'media'
 MEDIA_URL = '/media/'
 
 LOGIN_REDIRECT_URL = 'goods-list'
+
+
+CELERY_BROKER_URL = os.getenv('LOCATION')
+
+CELERY_RESULT_BACKEND = os.getenv('LOCATION')

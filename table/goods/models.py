@@ -2,16 +2,33 @@ from django.db import models
 from slugify import slugify
 from users.models import User
 
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+
 
 class PublishedModel(models.Model):
     """Абстрактная модель. Добавляет флаги опубликовано и Добавлено."""
+    reason = [
+        ('Нарушает правило сайта', 'Нарушает правило сайта'),
+        ('Не соответствует действительности',
+         'Не соответствует действительности'),
+        ('Ненормативная лексика', 'Ненормативная лексика'),
+        ('Другая причина', 'Другая причина')
 
+    ]
     is_published = models.BooleanField(
         'Опубликовано',
         default=False,
         help_text='Поставьте галочку, чтобы  опубликовать.',
     )
     created_at = models.DateTimeField('Добавлено', auto_now_add=True)
+    reason_for_not_publish = models.CharField(
+        max_length=100,
+        choices=reason,
+        null=True,
+        default=False,
+        blank=True
+    )
 
     class Meta:
         abstract = True
@@ -41,9 +58,10 @@ class GoodCategory(PublishedModel):
 class Goods(PublishedModel):
     """ Модель товаров. """
     CONDITION_GOOD_CHOICES = [
-        ('Новое', 'NEW'),
-        ('БУ', 'USED')
+        ('NEW', 'Новое'),
+        ('USED', 'БУ')
     ]
+
     good_name = models.CharField('Наименование товара', max_length=100)
     model = models.CharField(
         'Модель товара',
@@ -79,6 +97,29 @@ class Goods(PublishedModel):
 
     def __str__(self):
         return self.good_name
+
+
+from goods.tasks import (send_published_notification,
+                         send_new_good_notification,
+                         block_good_for_break_rules)
+
+
+@receiver(post_save, sender=Goods)
+def send_notification_on_publish(sender, instance, **kwargs):
+    if instance.is_published and instance.in_stock:
+        send_published_notification(instance.id)
+
+
+@receiver(post_save, sender=Goods)
+def send_notification_on_new_good(sender, instance, **kwargs):
+    if not instance.is_published and instance.in_stock:
+        send_new_good_notification(instance.id)
+
+
+@receiver(post_save, sender=Goods)
+def send_mail_cus_block_good(sender, instance, **kwargs):
+    if not instance.is_published and instance.reason_for_not_publish:
+        block_good_for_break_rules(instance.id)
 
 
 class GoodsPhoto(PublishedModel):
