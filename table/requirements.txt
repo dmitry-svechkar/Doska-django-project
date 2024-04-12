@@ -15,6 +15,7 @@ colorama==0.4.6
 confusable-homoglyphs==3.3.1
 Django==4.2.9
 django-multiupload==0.6.1
+django-phonenumber-field==7.3.0
 django-redis==5.4.0
 django-registration==3.4
 djangorestframework==3.14.0
@@ -35,6 +36,7 @@ kolo==2.21.1
 kombu==5.3.6
 msgpack==1.0.8
 packaging==24.0
+phonenumberslite==8.13.34
 pillow==10.2.0
 pluggy==1.4.0
 prometheus_client==0.20.0
