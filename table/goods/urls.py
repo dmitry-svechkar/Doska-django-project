@@ -3,13 +3,19 @@ from django.conf.urls.static import static
 from django.urls import path
 
 from goods.views import (AddDeleteCartView, AddGoodsView, AddToWishListView,
-                         CartView, GoodDetailView, GoodsListView, WishListView)
+                         CartView, GoodDetailView, GoodsListView, WishListView,
+                         CategoryView)
 
 urlpatterns = [
     path(
         'add_advertisment/',
         AddGoodsView.as_view(),
         name='add-advertisment'
+    ),
+    path(
+         'categories/<slug:category_slug>',
+         CategoryView.as_view(),
+         name='categories'
     ),
     path('wish_list/', WishListView.as_view(), name='wish_list'),
     path('add_to_cart/<slug:slug>/',
