@@ -22,6 +22,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'services.apps.ServicesConfig',
     'goods.apps.GoodsConfig',
+    "phonenumber_field",
 
 ]
 

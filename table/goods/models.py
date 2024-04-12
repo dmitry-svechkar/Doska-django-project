@@ -1,5 +1,7 @@
 from django.db import models
+from phonenumber_field.modelfields import PhoneNumberField
 from slugify import slugify
+
 from users.models import User
 
 from django.db.models.signals import post_save
@@ -177,3 +179,18 @@ class Carts(AbstactUserGoodModel):
     Пользователь {self.user.username}
     добавил в список желаемого {self.good.good_name}
     '''
+
+
+class Orders(models.Model):
+    """ Модель сохраняющая информация о сделанном заказе. """
+    DELIVERY_METHOD = [
+        ('Почта', 'Почта'),
+        ('Курьер', 'Курьер')
+    ]
+    full_name = models.CharField(max_length=100)
+    email = models.EmailField()
+    phone_number = PhoneNumberField(region='RU', max_length=12)
+    city = models.CharField(max_length=100)
+    address = models.CharField(max_length=100)
+    delivery_method = models.CharField(max_length=6, choices=DELIVERY_METHOD)
+    cart = models.ManyToManyField(Carts)

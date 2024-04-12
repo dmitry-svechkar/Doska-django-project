@@ -1,7 +1,7 @@
 from django.forms import ModelForm
 from multiupload.fields import MultiFileField
 
-from goods.models import Goods, GoodsPhoto
+from goods.models import Goods, GoodsPhoto, Orders
 
 
 class AddGoodForm(ModelForm):
@@ -25,3 +25,17 @@ class AddGoodForm(ModelForm):
         for photo in self.cleaned_data['good_photos']:
             GoodsPhoto.objects.create(good_photo=photo, good=instance)
         return instance
+
+
+class CheckoutForm(ModelForm):
+
+    class Meta:
+        model = Orders
+        fields = (
+            'full_name',
+            'email',
+            'phone_number',
+            'city',
+            'address',
+            'delivery_method'
+        )

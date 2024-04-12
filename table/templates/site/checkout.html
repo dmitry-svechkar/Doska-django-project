@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+        <main id="MainContent" class="content-for-layout">
+            <div class="checkout-page mt-100">
+                <div class="container">
+                    <div class="checkout-page-wrapper">
+                        <div class="row">
+                            <div class="col-xl-9 col-lg-8 col-md-12 col-12">
+                                <div class="section-header mb-3">
+                                    <h2 class="section-heading">Оформление заказа</h2>
+                                </div>
+                                
+                                <div class="shipping-address-area">
+                                    <div class="shipping-address-form-wrapper">
+
+                                        <form method="post" class="shipping-address-form common-form">
+                                            
+                                            <div class="row">
+                                                <div class="col-lg-9 col-md-12 col-12">
+                                                    {% csrf_token %}
+                                                    {{ form.as_p }}
+                                        </div> 
+                                        </div>
+                                        <a href=" {% static 'cart.html' %} " class="checkout-page-btn minicart-btn btn-secondary">Вернуться в корзину</a>
+                                        <button type="submit" class="checkout-page-btn minicart-btn btn-primary">Оформить</button>
+
+                                        </form> 
+                                    </div>
+                                </div>
+
+                                <div class="shipping-address-area billing-area">
+                                   
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-4 col-md-12 col-12">
+\                                <div class="cart-total-area checkout-summary-area">
+                                    <h3 class="d-none d-lg-block mb-0 text-center heading_24 mb-4">Список заказа.</h4>
+                                    {% for good in cart_list %}
+                                    <div class="minicart-item d-flex">
+                                        <div class="mini-img-wrapper">
+                                            <img class="mini-img" src="{{ good.good.goods.first.good_photo.url }}" alt="img">
+                                        </div>
+                                        <div class="product-info">
+                                            <h2 class="product-title"><a href="{% url 'good-detail' good.good.slug %}">{{ good.good.good_name }} </a></h2>
+                                            <p class="product-vendor">$ {{good.good.good_cost}} X 1</p>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+
+                                    <div class="cart-total-box mt-4 bg-transparent p-0">
+                                        <div class="subtotal-item discount-box">
+                                            <h4 class="subtotal-title">Кол-во товаров:</h4>
+                                            <p class="subtotal-value">{{count_obj}}</p>
+                                        </div>
+                                        <div class="subtotal-item subtotal-box">
+                                            <h4 class="subtotal-title">Подыитог</h4>
+                                            <p class="subtotal-value">${{total}}</p>
+                                        </div>
+                                        <div class="subtotal-item shipping-box">
+                                            <h4 class="subtotal-title">Доставка:</h4>
+                                            <p class="subtotal-value">$10.00</p>
+                                        </div>
+                                    
+                                        <hr />
+                                        <div class="subtotal-item discount-box">
+                                            <h4 class="subtotal-title">Total:</h4>
+                                            <p class="subtotal-value">${{total_with_delivery}}</p>
+                                        </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>            
+        </main>
+        {% endblock %}

@@ -6,11 +6,13 @@ from django.urls import reverse
 from django.views import View
 from django.views.generic import CreateView, DetailView, ListView
 
-from goods.forms import AddGoodForm
-from goods.models import Carts, Goods, WishGoods, GoodCategory
+from goods.forms import AddGoodForm, CheckoutForm
+from goods.models import Carts, Goods, WishGoods, GoodCategory, Orders
 from goods.tasks import send_new_good_notification
 from django.views.decorators.cache import cache_page
 from django.utils.decorators import method_decorator
+from django.views.generic import TemplateView
+from django.views.generic.edit import FormView
 
 
 class CategoryView(ListView):
@@ -137,3 +139,37 @@ class CartView(ListView):
         context['count_obj'] = count_obj
         context['total'] = total
         return context
+
+
+class SuccessCart(TemplateView):
+    template_name = 'site/order_complete.html'
+
+
+class CheckoutCart(FormView):
+    """ Вью логики оформления заказа. """
+    template_name = 'site/checkout.html'
+    model = Orders
+    form_class = CheckoutForm
+
+    def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
+        objs = Carts.objects.filter(user=self.request.user)
+        context = super().get_context_data(**kwargs)
+        count_obj = objs.count()
+        total = sum(obj.good.good_cost for obj in objs)
+        context['cart_list'] = Carts.objects.filter(user=self.request.user)
+        context['count_obj'] = count_obj
+        context['total'] = total
+        context['total_with_delivery'] = total + 10
+        return context
+
+    def form_valid(self, form):
+        orders_instance = form.save(commit=False)
+
+        cart_items = Carts.objects.filter(user=self.request.user)
+        orders_instance.save()
+        orders_instance.cart.set(cart_items)
+
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse('success_cart')
