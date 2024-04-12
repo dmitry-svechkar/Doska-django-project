@@ -174,6 +174,7 @@
                                             <a class="nav-link" href={% url 'goods-list' %}>
                                                 Goods
                                             </a>
+                                            
                                             <span class="open-submenu">
                                                 <svg class="icon icon-dropdown" xmlns="http://www.w3.org/2000/svg"
                                                     width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -183,19 +184,14 @@
                                                 </svg>
                                             </span>
                                         </div>
+                                        
                                         <div class="submenu-transform submenu-transform-desktop">
                                             <ul class="submenu list-unstyled">
+                                                {% for category in category_list %}
                                                 <li class="menu-list-item nav-item-sub">
-                                                    <a class="nav-link-sub nav-text-sub" href="index.html">Category 1</a>
+                                                    <a class="nav-link-sub nav-text-sub" href="{% url 'categories' category.category_slug %}">{{category.category_good_name}}</a>
                                                 </li>
-                                                <li class="menu-list-item nav-item-sub">
-                                                    <a class="nav-link-sub nav-text-sub" href="index-shoe.html">Category
-                                                        2</a>
-                                                </li>
-                                                <li class="menu-list-item nav-item-sub">
-                                                    <a class="nav-link-sub nav-text-sub" href="index-bag.html">Category
-                                                        3</a>
-                                                </li>
+                                                {% endfor %}
                                                 
                                             </ul>
                                         </div>
