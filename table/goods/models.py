@@ -45,6 +45,10 @@ class GoodCategory(PublishedModel):
         max_length=500,
         null=False,
     )
+    category_slug = models.SlugField(
+        'Идентификатор категории',
+        unique=True,
+    )
 
     def save(self, *args, **kwargs):
         if not self.category_description:
