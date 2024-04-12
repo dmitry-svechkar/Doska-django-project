@@ -152,3 +152,7 @@ media/
 node_modules
 
 pass.txt
+table/INFO
+table/celerybeat-schedule.dir
+table/celerybeat-schedule.dat
+table/celerybeat-schedule.bak
