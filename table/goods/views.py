@@ -7,10 +7,29 @@ from django.views import View
 from django.views.generic import CreateView, DetailView, ListView
 
 from goods.forms import AddGoodForm
-from goods.models import Carts, Goods, WishGoods
+from goods.models import Carts, Goods, WishGoods, GoodCategory
 from goods.tasks import send_new_good_notification
 from django.views.decorators.cache import cache_page
 from django.utils.decorators import method_decorator
+
+
+class CategoryView(ListView):
+    model = GoodCategory
+    template_name = 'site/goods_list.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['category_list'] = GoodCategory.objects.all()
+        return context
+
+    def get_queryset(self):
+        category_slug = self.kwargs.get('category_slug')
+        if category_slug:
+            return Goods.objects.filter(
+                good_category__category_slug=category_slug
+            )
+        else:
+            return Goods.objects.all()
 
 
 @method_decorator(cache_page(60*1), name='dispatch')
@@ -26,7 +45,10 @@ class GoodsListView(ListView):
     context_object_name = 'goods_list'
 
     def get_context_data(self, **kwargs):
-        return super().get_context_data(**kwargs)
+        context = super().get_context_data(**kwargs)
+        context['category_list'] = GoodCategory.objects.all()
+
+        return context
 
 
 class GoodDetailView(DetailView):
@@ -37,8 +59,6 @@ class GoodDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         return super().get_context_data(**kwargs)
-
-# from goods.tasks import send_new_good_notification
 
 
 class AddGoodsView(CreateView):
