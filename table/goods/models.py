@@ -100,26 +100,19 @@ class Goods(PublishedModel):
 
 
 from goods.tasks import (send_published_notification,
-                         send_new_good_notification,
                          block_good_for_break_rules)
 
 
 @receiver(post_save, sender=Goods)
 def send_notification_on_publish(sender, instance, **kwargs):
     if instance.is_published and instance.in_stock:
-        send_published_notification(instance.id)
-
-
-@receiver(post_save, sender=Goods)
-def send_notification_on_new_good(sender, instance, **kwargs):
-    if not instance.is_published and instance.in_stock:
-        send_new_good_notification(instance.id)
+        send_published_notification.delay(instance.id)
 
 
 @receiver(post_save, sender=Goods)
 def send_mail_cus_block_good(sender, instance, **kwargs):
     if not instance.is_published and instance.reason_for_not_publish:
-        block_good_for_break_rules(instance.id)
+        block_good_for_break_rules.delay(instance.id)
 
 
 class GoodsPhoto(PublishedModel):

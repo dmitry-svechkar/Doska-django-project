@@ -8,6 +8,7 @@ from django.views.generic import CreateView, DetailView, ListView
 
 from goods.forms import AddGoodForm
 from goods.models import Carts, Goods, WishGoods
+from goods.tasks import send_new_good_notification
 from django.views.decorators.cache import cache_page
 from django.utils.decorators import method_decorator
 
@@ -37,6 +38,8 @@ class GoodDetailView(DetailView):
     def get_context_data(self, **kwargs):
         return super().get_context_data(**kwargs)
 
+# from goods.tasks import send_new_good_notification
+
 
 class AddGoodsView(CreateView):
     """ Вью добавления товаров. """
@@ -46,6 +49,8 @@ class AddGoodsView(CreateView):
 
     def form_valid(self, form):
         form.instance.seller = self.request.user
+        good = form.save()
+        send_new_good_notification.delay(good_id=good.id)
         return super().form_valid(form)
 
     def get_success_url(self):
