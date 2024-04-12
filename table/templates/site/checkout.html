@@ -23,9 +23,8 @@
                                                     {{ form.as_p }}
                                         </div> 
                                         </div>
-                                        <a href=" {% static 'cart.html' %} " class="checkout-page-btn minicart-btn btn-secondary">Вернуться в корзину</a>
+                                        <a href="{% url 'carts' %}" class="checkout-page-btn minicart-btn btn-secondary">Вернуться в корзину</a>
                                         <button type="submit" class="checkout-page-btn minicart-btn btn-primary">Оформить</button>
-
                                         </form> 
                                     </div>
                                 </div>
@@ -35,7 +34,7 @@
                                 </div>
                             </div>
                             <div class="col-xl-3 col-lg-4 col-md-12 col-12">
-\                                <div class="cart-total-area checkout-summary-area">
+                                <div class="cart-total-area checkout-summary-area">
                                     <h3 class="d-none d-lg-block mb-0 text-center heading_24 mb-4">Список заказа.</h4>
                                     {% for good in cart_list %}
                                     <div class="minicart-item d-flex">
