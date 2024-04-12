@@ -13,7 +13,7 @@ from django.views.decorators.cache import cache_page
 from django.utils.decorators import method_decorator
 from django.views.generic import TemplateView
 from django.views.generic.edit import FormView
-
+from goods.tasks import send_mail_new_order_to_costumer
 
 class CategoryView(ListView):
     model = GoodCategory
@@ -160,15 +160,16 @@ class CheckoutCart(FormView):
         context['count_obj'] = count_obj
         context['total'] = total
         context['total_with_delivery'] = total + 10
+        context['user'] = self.request.user
         return context
 
     def form_valid(self, form):
         orders_instance = form.save(commit=False)
-
         cart_items = Carts.objects.filter(user=self.request.user)
+        orders_instance.user = self.request.user
         orders_instance.save()
         orders_instance.cart.set(cart_items)
-
+        send_mail_new_order_to_costumer.delay(self.request.user.id)
         return super().form_valid(form)
 
     def get_success_url(self):

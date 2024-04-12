@@ -1,6 +1,6 @@
 import os
 from celery import shared_task
-from goods.models import Goods
+from goods.models import Goods, User
 from django.core.mail import send_mail
 
 
@@ -43,4 +43,20 @@ def block_good_for_break_rules(goods_id, **kwargs):
     Внесите необходимые изменения.'''
     from_email = os.getenv('DEFAULT_FROM_EMAIL')
     recipient = goods.seller.email
+    send_mail(subject, message, from_email, [recipient],  **kwargs)
+
+
+@shared_task()
+def send_mail_new_order_to_costumer(user, **kwargs):
+    from goods.models import Orders
+
+    order = Orders.objects.filter(user_id=user).last()
+    subject = 'Вы оформили заказ'
+    message = f'''
+    {order.user.username}, ваш заказ принят.
+    адрес доставки {order.city}, {order.address},
+    С вами свяжется продавец, способ доставки {order.delivery_method}
+    '''
+    from_email = os.getenv('DEFAULT_FROM_EMAIL')
+    recipient = order.user
     send_mail(subject, message, from_email, [recipient],  **kwargs)
