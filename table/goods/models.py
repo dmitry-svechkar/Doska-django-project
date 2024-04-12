@@ -194,3 +194,4 @@ class Orders(models.Model):
     address = models.CharField(max_length=100)
     delivery_method = models.CharField(max_length=6, choices=DELIVERY_METHOD)
     cart = models.ManyToManyField(Carts)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
