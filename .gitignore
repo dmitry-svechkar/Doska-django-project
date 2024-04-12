@@ -153,6 +153,7 @@ node_modules
 
 pass.txt
 table/INFO
-table/celerybeat-schedule.bak
-table/celerybeat-schedule.dat
+
 table/celerybeat-schedule.dir
+table/celerybeat-schedule.dat
+table/celerybeat-schedule.bak
