@@ -1,6 +1,7 @@
 from django.contrib import admin
 
-from goods.models import Carts, GoodCategory, Goods, GoodsPhoto, WishGoods
+from goods.models import (Carts, GoodCategory, Goods,
+                          GoodsPhoto, WishGoods, Orders)
 
 
 @admin.register(Goods)
@@ -25,4 +26,9 @@ class WishGoodsAdmin(admin.ModelAdmin):
 
 @admin.register(Carts)
 class CartsAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(Orders)
+class OrdersAdmin(admin.ModelAdmin):
     pass
