@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+        <main id="MainContent" class="content-for-layout">
+            <div class="error-page mt-100">
+                <div class="container">
+                    <div class="error-content text-center">
+                        <div class="error-img mx-auto">
+                            <img src=" {% static 'assets/img/error/404.jpg' %} " alt="error">
+                        </div>
+                        <p class="error-subtitle">Page Not Found</p>
+                        <a href="{% url 'goods-list' %}" class="btn-primary mt-4">Вернуться к списку товаров. </a>
+                    </div>
+                </div>
+            </div>            
+        </main>
+        {% endblock %}
