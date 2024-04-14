@@ -6,6 +6,10 @@ from table.celery import app
 
 @app.task
 def send_email_for_moderator():
+    """
+    Отправка сообщения группе модераторов
+    раз в 1 час с ссылкой на админку для модерации новых объявлений.
+    """
     moderators = User.objects.get(role='moderator')
     subject = 'модерация '
     message = '''
