@@ -13,7 +13,8 @@ from django.views.decorators.cache import cache_page
 from django.utils.decorators import method_decorator
 from django.views.generic import TemplateView
 from django.views.generic.edit import FormView
-from goods.tasks import send_mail_new_order_to_costumer
+from goods.tasks import send_mail_new_order_to_costumer, send_mail_for_seller
+
 
 class CategoryView(ListView):
     model = GoodCategory
@@ -170,6 +171,7 @@ class CheckoutCart(FormView):
         orders_instance.save()
         orders_instance.cart.set(cart_items)
         send_mail_new_order_to_costumer.delay(self.request.user.id)
+        send_mail_for_seller.delay(self.request.user.id)
         return super().form_valid(form)
 
     def get_success_url(self):
