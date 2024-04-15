@@ -3,8 +3,6 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
-
-
         <main id="MainContent" class="content-for-layout">
             <div class="cart-page mt-100">
                 <div class="container">
@@ -14,10 +12,10 @@
                                 <table class="cart-table w-100">
                                     <thead>
                                       <tr>
-                                        <th class="cart-caption heading_18">Product</th>
+                                        <th class="cart-caption heading_18">Товар</th>
                                         <th class="cart-caption heading_18"></th>
-                                        <th class="cart-caption text-center heading_18 d-none d-md-table-cell">Quantity</th>
-                                        <th class="cart-caption text-end heading_18">Price</th>
+                                        <th class="cart-caption text-center heading_18 d-none d-md-table-cell">Количество</th>
+                                        <th class="cart-caption text-end heading_18">Цена</th>
                                       </tr>
                                     </thead>
                         
@@ -57,10 +55,10 @@
                             </div>
                             <div class="col-lg-5 col-md-12 col-12">
                                 <div class="cart-total-area">
-                                    <h3 class="cart-total-title d-none d-lg-block mb-0">Cart Totals</h4>
+                                    <h3 class="cart-total-title d-none d-lg-block mb-0">Корзина</h4>
                                     <div class="cart-total-box mt-4">
                                         <div class="subtotal-item subtotal-box">
-                                            <h4 class="subtotal-title">Total number of products</h4>
+                                            <h4 class="subtotal-title">Кол-во товаров</h4>
                                             <p class="subtotal-value">{{ count_obj }}</p>
                                         </div>
                             
@@ -69,10 +67,9 @@
                                             <h4 class="subtotal-title">Total:</h4>
                                             <p class="subtotal-value">${{total}}</p>
                                         </div>
-                                        <p class="shipping_text">Shipping & taxes calculated at checkout</p>
                                         <div class="d-flex justify-content-center mt-4">
-                                            <a href="checkout.html" class="position-relative btn-primary text-uppercase">
-                                                Procced to checkout
+                                            <a href="{% url 'checkout_cart' %}" class="position-relative btn-primary text-uppercase">
+                                                Оформить заказ
                                             </a>
                                         </div>
                                     </div>

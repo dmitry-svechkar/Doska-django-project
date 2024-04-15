@@ -22,6 +22,7 @@
                     </div>
                 </div>
                 <div class="product-card-details">
+                    
                     <h3 class="product-card-title">
                         <a href="{% url 'good-detail' good.slug %}">{{ good.good_name }}</a>
                     </h3>
@@ -29,7 +30,9 @@
                     <div class="product-card-price">
                         <span class="card-price-regular">$ {{ good.good_cost }} </span>
                     </div>
-
+                    <div class="product-card-price">
+                        <span class="card-price-regular">Продавец {{ good.seller.username }} </span>
+                    </div>
                 </div>
                 
             </div>

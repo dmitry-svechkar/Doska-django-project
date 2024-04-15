@@ -1,0 +1,5 @@
+{% extends "base.html" %}
+{% block content %}
+Привет, {{ user.username }}! <br/>
+Ваша Заказ принят. Через некоторое время Вам придется письмо с деталями заказа. <a href="{% url 'goods-list' %}">Вернуться к товарам </a>.
+{% endblock %}
