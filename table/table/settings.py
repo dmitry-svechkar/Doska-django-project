@@ -7,9 +7,11 @@ load_dotenv()
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.getenv('SECRET_KEY')
-DEBUG = os.getenv('DEBUG')
-ALLOWED_HOSTS = []
-
+# DEBUG = os.getenv('DEBUG')
+DEBUG = False
+CSRF_TRUSTED_ORIGINS = [os.getenv('CSRF_TRUSTED_ORIGINS')]
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+CORS_ORIGIN_WHITELIST = (os.getenv('CORS_ORIGIN_WHITELIST'))
 
 INSTALLED_APPS = [
     'users.apps.UsersConfig',
@@ -75,7 +77,7 @@ else:
             'NAME': os.getenv('POSTGRES_DB', 'django'),
             'USER': os.getenv('POSTGRES_USER', 'django'),
             'PASSWORD': os.getenv('POSTGRES_PASSWORD', ''),
-            'HOST': os.getenv('DB_HOST', ''),
+            'HOST': os.getenv('DB_HOST', 'localhost'),
             'PORT': os.getenv('DB_PORT', 5432)
         }
     }
@@ -115,15 +117,13 @@ CACHES = {
     }
 }
 STATIC_URL = '/static/'
+STATIC_ROOT = '/collected_static/'
 
 STATICFILES_DIRS = [
    os.path.join(BASE_DIR, "static"),
 ]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-
-LOGIN_REDIRECT_URL = 'main'
 
 AUTH_USER_MODEL = 'users.User'
 
