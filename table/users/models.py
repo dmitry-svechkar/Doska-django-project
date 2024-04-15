@@ -46,14 +46,14 @@ class User(AbstractBaseUser, PermissionsMixin):
         max_length=255,
         unique=True
     )
-    is_active = models.BooleanField(default=False)
+    is_active = models.BooleanField('Прошел регистрацию', default=False)
     date_of_birth = models.DateField(
         'Дата рождения',
         validators=[validate_age,],
     )
     user_info = models.TextField(blank=True)
     role = models.CharField(
-        max_length=9, choices=(Role.choices), default=Role.user
+        'Роль', max_length=9, choices=(Role.choices), default=Role.user
     )
     is_staff = models.BooleanField(default=False)
     USERNAME_FIELD = 'email'
@@ -73,3 +73,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     ):
         """Отправить письмо с потверждением регистрации."""
         send_mail(subject, message, from_email, [self.email], **kwargs)
+
+    class Meta:
+        verbose_name = 'пользователь'
+        verbose_name_plural = 'пользователи'
