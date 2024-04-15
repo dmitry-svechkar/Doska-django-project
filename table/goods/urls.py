@@ -1,8 +1,11 @@
+from django.contrib import admin
 from django.urls import path
 
 from goods.views import (AddDeleteCartView, AddGoodsView, AddToWishListView,
                          CartView, GoodDetailView, GoodsListView, WishListView,
                          CategoryView, CheckoutCart, SuccessCart)
+from services.models import Services, ServiceCategory
+
 
 urlpatterns = [
     path(
@@ -33,3 +36,10 @@ urlpatterns = [
          name='add_to_wishlist'),
     path('', GoodsListView.as_view(), name='goods-list'),
 ]
+
+admin.site.site_header = 'Администрирование площадки'
+admin.site.site_title = 'Администрирование площадки'
+admin.site.index_title = 'Добро пожалователь в админ-панель'
+
+admin.site.unregister(Services)
+admin.site.unregister(ServiceCategory)

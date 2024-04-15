@@ -25,6 +25,7 @@ class PublishedModel(models.Model):
     )
     created_at = models.DateTimeField('Добавлено', auto_now_add=True)
     reason_for_not_publish = models.CharField(
+        'Причина непубликации',
         max_length=100,
         choices=reason,
         null=True,
@@ -60,6 +61,10 @@ class GoodCategory(PublishedModel):
     def __str__(self):
         return self.category_good_name
 
+    class Meta:
+        verbose_name = ('категория товаров')
+        verbose_name_plural = ('категории товаров')
+
 
 class Goods(PublishedModel):
     """ Модель товаров. """
@@ -76,7 +81,7 @@ class Goods(PublishedModel):
         blank=True
     )
     condition = models.CharField(max_length=5, choices=CONDITION_GOOD_CHOICES)
-    in_stock = models.BooleanField(default=False)
+    in_stock = models.BooleanField('в наличии', default=False)
     good_cost = models.IntegerField(
         'Стоимость товара',
     )
@@ -89,11 +94,13 @@ class Goods(PublishedModel):
     good_category = models.ForeignKey(
         GoodCategory,
         on_delete=models.SET,
-        related_name='goods'
+        related_name='goods',
+        verbose_name='категория товара'
     )
     seller = models.ForeignKey(
         User, on_delete=models.CASCADE,
-        related_name='seller'
+        related_name='seller',
+        verbose_name='продавец'
     )
 
     def save(self, *args, **kwargs):
@@ -103,6 +110,10 @@ class Goods(PublishedModel):
 
     def __str__(self):
         return self.good_name
+
+    class Meta:
+        verbose_name = ('товар')
+        verbose_name_plural = ('товары')
 
 
 from goods.tasks import (send_published_notification,
@@ -135,28 +146,31 @@ class GoodsPhoto(PublishedModel):
     good = models.ForeignKey(
         Goods,
         on_delete=models.CASCADE,
-        related_name='goods')
+        related_name='goods',
+        verbose_name='товар')
 
     def __str__(self):
         return f'фото {self.good.good_name}'
+
+    class Meta:
+        verbose_name = ('фото')
+        verbose_name_plural = ('Архив фото товаров')
 
 
 class AbstactUserGoodModel(models.Model):
     """ Класс миксин для вынесения сущностей связи с моделями User и Goods. """
     user = models.ForeignKey(User,
                              related_name='wishes',
-                             on_delete=models.CASCADE)
+                             on_delete=models.CASCADE,
+                             verbose_name='пользователь')
     good = models.ForeignKey(Goods,
                              related_name='wishes',
-                             on_delete=models.CASCADE)
+                             on_delete=models.CASCADE,
+                             verbose_name='товар')
 
 
 class WishGoods(AbstactUserGoodModel):
     """ Модель сущностей желаемых товаров. """
-    class Meta:
-        default_related_name = 'wishes'
-        verbose_name = 'желаемый товар'
-        verbose_name_plural = 'желаемые товары'
 
     def __str__(self):
         return f'''
@@ -164,10 +178,15 @@ class WishGoods(AbstactUserGoodModel):
     добавил в список желаемого {self.good.good_name}
     '''
 
+    class Meta:
+        default_related_name = 'wishes'
+        verbose_name = 'желаемый товар'
+        verbose_name_plural = 'желаемые товары'
+
 
 class Carts(AbstactUserGoodModel):
     """ Модель сущностей  списка покупок. """
-    quantity = models.SmallIntegerField()
+    quantity = models.SmallIntegerField('кол-во товара')
 
     class Meta:
         default_related_name = 'carts'
@@ -193,5 +212,9 @@ class Orders(models.Model):
     city = models.CharField(max_length=100)
     address = models.CharField(max_length=100)
     delivery_method = models.CharField(max_length=6, choices=DELIVERY_METHOD)
-    cart = models.ManyToManyField(Carts)
+    cart = models.ManyToManyField(Carts, related_name='cart')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    class Meta:
+        verbose_name = ('заказ')
+        verbose_name_plural = ('заказы')
