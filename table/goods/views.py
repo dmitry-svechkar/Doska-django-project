@@ -19,6 +19,7 @@ from goods.tasks import send_mail_new_order_to_costumer, send_mail_for_seller
 class CategoryView(ListView):
     model = GoodCategory
     template_name = 'site/goods_list.html'
+    paginate_by = 6
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -98,7 +99,7 @@ class AddToWishListView(View):
 class WishListView(ListView):
     """ Вью отображения желаемых товаров. """
     model = WishGoods
-    paginate_by = 3
+    paginate_by = 6
     template_name = 'site/wishlist.html'
     context_object_name = 'wish_list'
 
@@ -126,6 +127,7 @@ class CartView(ListView):
     Реализована логика рассчета кол-ва товаров и общей суммы покупок.
     """
     model = Carts
+    paginate_by = 6
     template_name = 'site/cart.html'
     context_object_name = 'cart_list'
 
