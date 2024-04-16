@@ -95,9 +95,9 @@ docker exec web cp -r /collected_static/. /app/static/
 ```
 ###### Создать суперпользователя:
 ```
-python manage.py сreatesuperuser
+docker exec web python manage.py сreatesuperuser
 ```
-###### Проект будет доступен по
+###### Небольшое описание и сам проект будут доступны по
 ```
 http://localhost:8080
 ```
