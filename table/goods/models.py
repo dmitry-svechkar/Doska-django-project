@@ -160,13 +160,14 @@ class GoodsPhoto(PublishedModel):
 class AbstactUserGoodModel(models.Model):
     """ Класс миксин для вынесения сущностей связи с моделями User и Goods. """
     user = models.ForeignKey(User,
-                             related_name='wishes',
                              on_delete=models.CASCADE,
                              verbose_name='пользователь')
     good = models.ForeignKey(Goods,
-                             related_name='wishes',
                              on_delete=models.CASCADE,
                              verbose_name='товар')
+
+    class Meta:
+        abstract = True
 
 
 class WishGoods(AbstactUserGoodModel):
@@ -186,7 +187,7 @@ class WishGoods(AbstactUserGoodModel):
 
 class Carts(AbstactUserGoodModel):
     """ Модель сущностей  списка покупок. """
-    quantity = models.SmallIntegerField('кол-во товара')
+    quantity = models.SmallIntegerField('кол-во товара',)
 
     class Meta:
         default_related_name = 'carts'
