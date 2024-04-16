@@ -13,6 +13,7 @@ from django.views.decorators.cache import cache_page
 from django.utils.decorators import method_decorator
 from django.views.generic import TemplateView
 from django.views.generic.edit import FormView
+from django.contrib.auth.mixins import LoginRequiredMixin
 from goods.tasks import send_mail_new_order_to_costumer, send_mail_for_seller
 
 
@@ -63,7 +64,7 @@ class GoodDetailView(CategoryContextMixin, DetailView):
     slug_url_kwarg = 'slug'
 
 
-class AddGoodsView(CategoryContextMixin, CreateView):
+class AddGoodsView(LoginRequiredMixin, CategoryContextMixin, CreateView):
     """ Вью добавления товаров. """
     template_name = 'site/add_add.html'
     form_class = AddGoodForm
@@ -79,7 +80,7 @@ class AddGoodsView(CategoryContextMixin, CreateView):
         return reverse('goods-list')
 
 
-class AddToWishListView(View):
+class AddToWishListView(LoginRequiredMixin, View):
     """ Добавление товара в список желаемого. """
     def get(self, request, slug):
         good = get_object_or_404(Goods, slug=slug)
@@ -94,7 +95,7 @@ class AddToWishListView(View):
 
 
 @method_decorator(cache_page(60*1), name='dispatch')
-class WishListView(CategoryContextMixin, ListView):
+class WishListView(LoginRequiredMixin, CategoryContextMixin, ListView):
     """ Вью отображения желаемых товаров. """
     model = WishGoods
     paginate_by = 6
@@ -105,7 +106,7 @@ class WishListView(CategoryContextMixin, ListView):
         return WishGoods.objects.filter(user=self.request.user)
 
 
-class AddDeleteCartView(View):
+class AddDeleteCartView(LoginRequiredMixin, View):
     """ Вью добавления и удаления товаров из списка покупок. """
     def post(self, request, slug, quantity=1):
         good = get_object_or_404(Goods, slug=slug)
