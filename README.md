@@ -2,6 +2,20 @@
 ##### Мини-аналог Авито, где пользователи могут размещать товары или свои услуги. Некоммерческий проект.
 <img src="https://github.com/dmitry-svechkar/pet_django/assets/138603861/aaefd3d8-af88-4fa3-ab38-ea7404c4345c.jpg" width="200" height="100" />
 
+##### Стек технологий
+<div>
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" width="50" height="50">
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/django/django-plain.svg" width="50" height="50">
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg" width="50" height="50">
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" width="50" height="50">
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original-wordmark.svg" width="50" height="50">
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg" width="50" height="50">
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/redis/redis-original.svg" width="50" height="50">
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg" width="50" height="50">
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nginx/nginx-original.svg" width="50" height="50">
+<img src="https://github.com/dmitry-svechkar/Doska-django-project/assets/138603861/cdfcbedb-f605-4ab2-91ce-41cc450d7bf1" width="80" height="50">
+</div>
+
 ###### Что сделано в проекте:
 - Подключен и настроен двухфакторный механизм регистрации на базе django-registration c потверждением почты и активации учетной записи. Настроен SMTP. ✅
 - Написаны кастоный UserManager и модель пользователя.✅ 
@@ -22,22 +36,6 @@
   - При оформлении заказа отправляется 2 письма: 1 - покупателю с составом заказа. 2 - продавцу c заявкой заказа. 
   - Задачи при блокировке модератором обявления за нарушения/ размещения объявления/ потверждения и 'выпуск' на сайт.
   - При создании пользователя с ролью 'модератор' 1 раз в 60 минут автоматически направляется напоминание о необхожимости модерировать объявления.(необходимо добавить модератора с правами)
-
-
-##### Стек технологий
-<div>
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" width="50" height="50">
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/django/django-plain.svg" width="50" height="50">
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg" width="50" height="50">
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" width="50" height="50">
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original-wordmark.svg" width="50" height="50">
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg" width="50" height="50">
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/redis/redis-original.svg" width="50" height="50">
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg" width="50" height="50">
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nginx/nginx-original.svg" width="50" height="50">
-<img src="https://github.com/dmitry-svechkar/Doska-django-project/assets/138603861/cdfcbedb-f605-4ab2-91ce-41cc450d7bf1" width="80" height="50">
-</div>
-
 
 ##### Отдельная благодарочка ребятам с BootstrapТема за возможность использовать фронтенд. 🙏
 
