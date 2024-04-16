@@ -1,5 +1,6 @@
 import pytest
-from goods.models import Goods, GoodCategory
+from goods.models import (Goods, GoodCategory, WishGoods,
+                          Carts, Orders)
 from users.models import User
 
 
@@ -12,6 +13,12 @@ def user():
         date_of_birth='2000-10-10'
     )
     return user
+
+
+@pytest.fixture
+def user_client(user, client):
+    client.force_login(user)
+    return user_client
 
 
 @pytest.fixture
@@ -87,3 +94,35 @@ def good_without_category(user, category):
         description='Описание товара',
         seller=user
     )
+
+
+@pytest.fixture
+def wish(good, user):
+    return WishGoods.objects.create(
+        user=user,
+        good=good
+    )
+
+
+@pytest.fixture
+def cart(good, user):
+    return Carts.objects.create(
+        user=user,
+        quantity=10,
+        good=good
+    )
+
+
+@pytest.fixture
+def order(user, cart):
+    order = Orders.objects.create(
+        full_name=user.username,
+        email=user.email,
+        phone_number='79551234567',
+        city='Moscow',
+        address='some_adress 15',
+        delivery_method='Курьер',
+        user=user
+    )
+    order.cart.set([cart])
+    return order

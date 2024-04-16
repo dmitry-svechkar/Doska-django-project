@@ -2,7 +2,6 @@ import pytest
 from datetime import datetime
 from users.models import User
 from django.urls import reverse
-from pytest_django.asserts import assertRedirects
 
 
 def is_date_of_birth_valid(date_of_birth):
@@ -53,11 +52,6 @@ def test_register_page(client, user_client):
     response_auth = user_client.get(reverse('django_registration_register'))
     assert response.status_code == 200
     assert response_auth.status_code == 200
-    # assertRedirects(
-    #     response_auth,
-    #     expected_url=reverse('goods-list'),
-    #     status_code=302,
-    #     target_status_code=200)
 
 
 @pytest.mark.django_db
@@ -65,4 +59,12 @@ def test_main(client, user_client):
     response = client.get(reverse('main'))
     response_auth = user_client.get(reverse('main'))
     assert response.status_code == 200
+    assert response_auth.status_code == 200
+
+
+@pytest.mark.django_db
+def test_wishes(client, user_client):
+    response = client.get(reverse('wish_list'))
+    response_auth = user_client.get(reverse('wish_list'))
+    assert response.status_code == 302
     assert response_auth.status_code == 200
