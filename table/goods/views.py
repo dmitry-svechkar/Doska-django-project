@@ -16,15 +16,22 @@ from django.views.generic.edit import FormView
 from goods.tasks import send_mail_new_order_to_costumer, send_mail_for_seller
 
 
-class CategoryView(ListView):
-    model = GoodCategory
-    template_name = 'site/goods_list.html'
-    paginate_by = 6
-
+class CategoryContextMixin:
+    """ Миксин для получения квери объекта категорий."""
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['category_list'] = GoodCategory.objects.all()
         return context
+
+
+class CategoryView(CategoryContextMixin, ListView):
+    """
+    Вью для отображения категории товаров.
+    Показываются только опубликованные категории.
+    """
+    model = GoodCategory
+    template_name = 'site/goods_list.html'
+    paginate_by = 6
 
     def get_queryset(self):
         category_slug = self.kwargs.get('category_slug')
@@ -37,7 +44,7 @@ class CategoryView(ListView):
 
 
 @method_decorator(cache_page(60*1), name='dispatch')
-class GoodsListView(ListView):
+class GoodsListView(CategoryContextMixin, ListView):
     """
     Вью для отображения списков товаров.
     Показываются только товары,
@@ -48,24 +55,15 @@ class GoodsListView(ListView):
     template_name = 'site/goods_list.html'
     context_object_name = 'goods_list'
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['category_list'] = GoodCategory.objects.all()
 
-        return context
-
-
-class GoodDetailView(DetailView):
+class GoodDetailView(CategoryContextMixin, DetailView):
     """ Вью страницы отображения товара. """
     model = Goods
     template_name = 'site/good_detail.html'
     slug_url_kwarg = 'slug'
 
-    def get_context_data(self, **kwargs):
-        return super().get_context_data(**kwargs)
 
-
-class AddGoodsView(CreateView):
+class AddGoodsView(CategoryContextMixin, CreateView):
     """ Вью добавления товаров. """
     template_name = 'site/add_add.html'
     form_class = AddGoodForm
@@ -96,7 +94,7 @@ class AddToWishListView(View):
 
 
 @method_decorator(cache_page(60*1), name='dispatch')
-class WishListView(ListView):
+class WishListView(CategoryContextMixin, ListView):
     """ Вью отображения желаемых товаров. """
     model = WishGoods
     paginate_by = 6
@@ -121,7 +119,7 @@ class AddDeleteCartView(View):
             return redirect('good-detail', slug=slug)
 
 
-class CartView(ListView):
+class CartView(CategoryContextMixin, ListView):
     """
     Вью отображения списка товаров в корзине.
     Реализована логика рассчета кол-ва товаров и общей суммы покупок.
@@ -144,11 +142,11 @@ class CartView(ListView):
         return context
 
 
-class SuccessCart(TemplateView):
+class SuccessCart(CategoryContextMixin, TemplateView):
     template_name = 'site/order_complete.html'
 
 
-class CheckoutCart(FormView):
+class CheckoutCart(CategoryContextMixin, FormView):
     """ Вью логики оформления заказа. """
     template_name = 'site/checkout.html'
     model = Orders
