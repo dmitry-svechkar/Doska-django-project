@@ -1,6 +1,5 @@
 from django.contrib.auth.views import LoginView
 from django.http import HttpResponseRedirect
-from django.shortcuts import render
 from django.urls import reverse_lazy
 from django_registration.backends.activation.views import RegistrationView
 
@@ -27,7 +26,3 @@ class MyLoginView(LoginView):
             return HttpResponseRedirect(self.success_url)
         else:
             return super().dispatch(request)
-
-
-def main(request):
-    return render(request, 'main.html')

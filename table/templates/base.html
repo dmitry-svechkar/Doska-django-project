@@ -86,7 +86,8 @@
                     </div>
                     <div class="col-lg-6 col-12">
                         <div class="announcement-text-wrapper d-flex align-items-center justify-content-center">
-                            <p class="announcement-text text-white">New year sale - 30% off</p>
+                            <p class="announcement-text text-white">Отдельная благодарочка ребятам с BootstrapТема за возможность использовать front🙏
+                            </p>
                         </div>
                     </div>
                     <div class="col-lg-3 d-lg-block d-none">
@@ -168,11 +169,18 @@
                         </div>
                         <div class="col-lg-6 d-lg-block d-none">
                             <nav class="site-navigation">
+                                
                                 <ul class="main-menu list-unstyled justify-content-center">
+                                    <li class="menu-list-item nav-item has-megamenu">
+                                        <div class="mega-menu-header">
+                                            <a class="nav-link" href={% url 'main' %}>
+                                                Описание проекта
+                                            </a>
+                                    </li>
                                     <li class="menu-list-item nav-item has-dropdown active">
                                         <div class="mega-menu-header">
                                             <a class="nav-link" href={% url 'goods-list' %}>
-                                                Goods
+                                                Товары
                                             </a>
                                             
                                             <span class="open-submenu">
@@ -199,13 +207,13 @@
                                     <li class="menu-list-item nav-item has-megamenu">
                                         <div class="mega-menu-header">
                                             <a class="nav-link" href="">
-                                                Services
+                                                Сервисы
                                             </a>
                                     </li>
 
                                     {% if user.is_authenticated %}
                                     <li class="menu-list-item nav-item">
-                                    <a class="nav-link" href="{% url 'add-advertisment'%}">Add advertisement </a>
+                                    <a class="nav-link" href="{% url 'add-advertisment'%}">Добавить объявление </a>
                                     </li>
                                     {% endif %}
                                     
@@ -730,10 +738,10 @@
                                 <p class="product-vendor">XS / Dove Gray</p>
                                 <div class="misc d-flex align-items-end justify-content-between">
                                     <div class="quantity d-flex align-items-center justify-content-between">
-                                        <button class="qty-btn dec-qty"><img src="assets/img/icon/minus.svg"
+                                        <button class="qty-btn dec-qty"><img src=""
                                                 alt="minus"></button>
                                         <input class="qty-input" type="number" name="qty" value="1" min="0">
-                                        <button class="qty-btn inc-qty"><img src="assets/img/icon/plus.svg"
+                                        <button class="qty-btn inc-qty"><img src=""
                                                 alt="plus"></button>
                                     </div>
                                     <div class="product-remove-area d-flex flex-column align-items-end">
@@ -751,10 +759,10 @@
                                 <p class="product-vendor">XS / Pink</p>
                                 <div class="misc d-flex align-items-end justify-content-between">
                                     <div class="quantity d-flex align-items-center justify-content-between">
-                                        <button class="qty-btn dec-qty"><img src="assets/img/icon/minus.svg"
+                                        <button class="qty-btn dec-qty"><img src=""
                                                 alt="minus"></button>
                                         <input class="qty-input" type="number" name="qty" value="1" min="0">
-                                        <button class="qty-btn inc-qty"><img src="assets/img/icon/plus.svg"
+                                        <button class="qty-btn inc-qty"><img src=""
                                                 alt="plus"></button>
                                     </div>
                                     <div class="product-remove-area d-flex flex-column align-items-end">
@@ -772,10 +780,10 @@
                                 <p class="product-vendor">XS / Dove Gray</p>
                                 <div class="misc d-flex align-items-end justify-content-between">
                                     <div class="quantity d-flex align-items-center justify-content-between">
-                                        <button class="qty-btn dec-qty"><img src="assets/img/icon/minus.svg"
+                                        <button class="qty-btn dec-qty"><img src=""
                                                 alt="minus"></button>
                                         <input class="qty-input" type="number" name="qty" value="1" min="0">
-                                        <button class="qty-btn inc-qty"><img src="assets/img/icon/plus.svg"
+                                        <button class="qty-btn inc-qty"><img src=""
                                                 alt="plus"></button>
                                     </div>
                                     <div class="product-remove-area d-flex flex-column align-items-end">
@@ -793,10 +801,10 @@
                                 <p class="product-vendor">XS / Dove Gray</p>
                                 <div class="misc d-flex align-items-end justify-content-between">
                                     <div class="quantity d-flex align-items-center justify-content-between">
-                                        <button class="qty-btn dec-qty"><img src="assets/img/icon/minus.svg"
+                                        <button class="qty-btn dec-qty"><img src=""
                                                 alt="minus"></button>
                                         <input class="qty-input" type="number" name="qty" value="1" min="0">
-                                        <button class="qty-btn inc-qty"><img src="assets/img/icon/plus.svg"
+                                        <button class="qty-btn inc-qty"><img src=""
                                                 alt="plus"></button>
                                     </div>
                                     <div class="product-remove-area d-flex flex-column align-items-end">
@@ -993,9 +1001,9 @@
     
                                     <div class="misc d-flex align-items-end justify-content-between mt-4">
                                         <div class="quantity d-flex align-items-center justify-content-between">
-                                            <button class="qty-btn dec-qty"><img src="assets/img/icon/minus.svg" alt="minus"></button>
+                                            <button class="qty-btn dec-qty"><img src="" alt="minus"></button>
                                             <input class="qty-input" type="number" name="qty" value="1" min="0">
-                                            <button class="qty-btn inc-qty"><img src="assets/img/icon/plus.svg" alt="plus"></button>
+                                            <button class="qty-btn inc-qty"><img src="" alt="plus"></button>
                                         </div>
                                         <div class="message-popup d-flex align-items-center">
                                             <span class="message-popup-icon">
