@@ -7,8 +7,8 @@ load_dotenv()
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.getenv('SECRET_KEY')
-# DEBUG = os.getenv('DEBUG')
-DEBUG = False
+DEBUG = os.getenv('DEBUG')
+# DEBUG = True
 CSRF_TRUSTED_ORIGINS = [os.getenv('CSRF_TRUSTED_ORIGINS')]
 ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 CORS_ORIGIN_WHITELIST = (os.getenv('CORS_ORIGIN_WHITELIST'))
